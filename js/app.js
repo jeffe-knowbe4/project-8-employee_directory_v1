@@ -76,7 +76,7 @@ let currentIndex;
 
 async function fetchEmployees() {
   const resp = await fetch(
-    "https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob"
+    "https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&nat=us"
   );
   const json = await resp.json();
   employees = json.results;
