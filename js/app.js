@@ -48,26 +48,18 @@ function showModal(card) {
   currentIndex = card.dataset.index;
   const employee = employees[currentIndex];
   $(".modal .image img").src = employee.picture.large;
-  $(
-    ".modal .image img"
-  ).alt = `Employee image of ${employee.name.first} ${employee.name.last}`;
-  $(
-    ".modal .name"
-  ).textContent = `${employee.name.first} ${employee.name.last}`;
+  $(".modal .image img").alt = `Employee image of ${employee.name.first} ${employee.name.last}`;
+  $(".modal .name").textContent = `${employee.name.first} ${employee.name.last}`;
   $(".modal .email").textContent = employee.email;
   $(".modal .email").href = `mailto:${employee.email}`;
   $(".modal .location").textContent = employee.location.city;
   $(".modal .phone").textContent = employee.phone;
   const loc = employee.location;
-  $(
-    ".modal .address"
-  ).textContent = `${loc.street.number} ${loc.street.name}, ${loc.state} ${loc.postcode}`;
+  $(".modal .address").textContent = `${loc.street.number} ${loc.street.name}, ${loc.state} ${loc.postcode}`;
   const dob = new Date(employee.dob.date);
   const day = String(dob.getDay()).padStart(2, 0);
   const month = String(dob.getMonth()).padStart(2, 0);
-  $(
-    ".modal .birthday"
-  ).textContent = `Birthday: ${day}/${month}/${dob.getFullYear()}`;
+  $(".modal .birthday").textContent = `Birthday: ${day}/${month}/${dob.getFullYear()}`;
 }
 
 // app start, fetch employees
@@ -75,9 +67,7 @@ let employees = [];
 let currentIndex;
 
 async function fetchEmployees() {
-  const resp = await fetch(
-    "https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&nat=us"
-  );
+  const resp = await fetch("https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&nat=us");
   const json = await resp.json();
   employees = json.results;
   displayEmployees(employees);
